@@ -3,7 +3,15 @@
 }
 
 .product-item img{
-    /* width: 200px;
-    height: 200px; */
     width: 100%;
+}
+
+.product-item h3{
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.product-item .product-info{
+    padding: 10px;
 }
