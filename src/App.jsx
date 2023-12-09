@@ -1,12 +1,10 @@
-import ProductItem from "./components/ProductItem";
+import Products from "./components/Products";
 
 function App() {
   return (
     <div>
       <h1>App Component</h1>
-      <ProductItem></ProductItem>
-      <ProductItem></ProductItem>
-      <ProductItem></ProductItem>
+      <Products />
     </div>
   );
 }
