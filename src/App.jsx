@@ -1,6 +1,7 @@
 import React from "react";
 import Counter from "./components/Counter";
 import Products from "./components/Products/Products";
+import AddNewProduct from "./components/Form/AddNewProduct";
 
 function App() {
   const [firstname, setFirstname] = React.useState("Ahmet");
@@ -12,6 +13,7 @@ function App() {
   }
   return (
     <div className="app-component">
+      <AddNewProduct />
       <Products />
       <Counter />
     </div>
