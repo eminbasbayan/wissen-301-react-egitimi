@@ -1,5 +1,6 @@
 import React from "react";
 import Counter from "./components/Counter";
+import Products from "./components/Products/Products";
 
 function App() {
   const [firstname, setFirstname] = React.useState("Ahmet");
@@ -11,10 +12,7 @@ function App() {
   }
   return (
     <div className="app-component">
-      <h1>{firstname}</h1>
-      <button onClick={handleClick}>İsmi Değiştir!</button>
-      <br />
-      <br />
+      <Products />
       <Counter />
     </div>
   );
