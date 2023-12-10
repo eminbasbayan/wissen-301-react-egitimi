@@ -1,4 +1,5 @@
 import React from "react";
+import Counter from "./components/Counter";
 
 function App() {
   const [firstname, setFirstname] = React.useState("Ahmet");
@@ -12,6 +13,9 @@ function App() {
     <div className="app-component">
       <h1>{firstname}</h1>
       <button onClick={handleClick}>İsmi Değiştir!</button>
+      <br />
+      <br />
+      <Counter />
     </div>
   );
 }
