@@ -1,5 +1,6 @@
 import Customers from "./components/Customers/Customers";
 import Products from "./components/Products/Products";
+import Button from "./components/UI/Button";
 
 const customersData = [
   {
@@ -28,6 +29,8 @@ function App() {
       <h1>App Component</h1>
       <Products />
       <Customers customers={customersData}></Customers>
+      <Button text="Kaydet" type="success"></Button>
+      <Button text="Sil" type="danger"></Button>
     </div>
   );
 }
