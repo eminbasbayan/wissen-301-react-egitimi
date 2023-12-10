@@ -1,5 +1,5 @@
-import Customers from "./components/Customers";
-import Products from "./components/Products";
+import Customers from "./components/Customers/Customers";
+import Products from "./components/Products/Products";
 
 const customersData = [
   {
