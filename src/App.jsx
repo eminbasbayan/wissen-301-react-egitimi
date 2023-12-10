@@ -29,8 +29,12 @@ function App() {
       <h1>App Component</h1>
       <Products />
       <Customers customers={customersData}></Customers>
-      <Button text="Kaydet" type="success"></Button>
-      <Button text="Sil" type="danger"></Button>
+      <Button type="success">
+        <b>Kaydet</b>
+      </Button>
+      <Button type="danger">
+        <b>Kaydet</b>
+      </Button>
     </div>
   );
 }
