@@ -1,44 +1,17 @@
-import Customers from "./components/Customers/Customers";
-import Products from "./components/Products/Products";
-import Button from "./components/UI/Button";
-
-const customersData = [
-  {
-    id: 1,
-    name: "Emin",
-    age: 15,
-    city: "İstanbul",
-  },
-  {
-    id: 2,
-    name: "Ahmet",
-    age: 35,
-    city: "Antep",
-  },
-  {
-    id: 3,
-    name: "Mehmet",
-    age: 15,
-    city: "Yalova",
-  },
-];
-
-function handleClick() {
-  console.log("Tıklandı!");
-}
+import React from "react";
 
 function App() {
+  const [firstname, setFirstname] = React.useState("Ahmet");
+  // let firstname = "Ahmet";
+
+  function handleClick() {
+    // firstname = "Mehmet";
+    setFirstname("Mehmet");
+  }
   return (
-    <div>
-      <h1 onClick={handleClick}>App Component</h1>
-      <Products />
-      <Customers customers={customersData}></Customers>
-      <Button type="success">
-        <b>Kaydet</b>
-      </Button>
-      <Button type="danger">
-        <b>Kaydet</b>
-      </Button>
+    <div className="app-component">
+      <h1>{firstname}</h1>
+      <button onClick={handleClick}>İsmi Değiştir!</button>
     </div>
   );
 }
