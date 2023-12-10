@@ -23,10 +23,14 @@ const customersData = [
   },
 ];
 
+function handleClick() {
+  console.log("Tıklandı!");
+}
+
 function App() {
   return (
     <div>
-      <h1>App Component</h1>
+      <h1 onClick={handleClick}>App Component</h1>
       <Products />
       <Customers customers={customersData}></Customers>
       <Button type="success">
