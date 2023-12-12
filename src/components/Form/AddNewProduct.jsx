@@ -2,27 +2,37 @@ import { useState } from "react";
 import "./AddNewProduct.css";
 
 function AddNewProduct() {
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productImage, setProductImage] = useState("");
+  const [formProductData, setFormProductData] = useState({
+    productName: "",
+    productPrice: "",
+    productImage: "",
+  });
 
   function handleNameChange(event) {
-    setProductName(event.target.value);
+    const inputValue = event.target.value;
+    setFormProductData({
+      ...formProductData,
+      productName: inputValue,
+    });
   }
 
   function handlePriceChange(event) {
-    setProductPrice(event.target.value);
+    const inputValue = event.target.value;
+    setFormProductData({
+      ...formProductData,
+      productPrice: inputValue,
+    });
   }
 
   function handleImageChange(event) {
-    setProductImage(event.target.value);
+    const inputValue = event.target.value;
+    setFormProductData({
+      ...formProductData,
+      productImage: inputValue,
+    });
   }
 
-  console.log({
-    name: productName,
-    image: productImage,
-    price: productPrice,
-  });
+  console.log(formProductData);
 
   return (
     <form className="product-form">
