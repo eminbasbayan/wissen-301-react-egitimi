@@ -2,7 +2,7 @@ import { useState } from "react";
 import ProductItem from "./ProductItem";
 import "./Products.css";
 
-function Products({ productItems }) {
+function Products({ productItems, setProductItems}) {
   const [productsCounter, setProductsCounter] = useState(0);
   return (
     <div className="products">
@@ -13,6 +13,8 @@ function Products({ productItems }) {
             key={item.id}
             productsCounter={productsCounter}
             setProductsCounter={setProductsCounter}
+            setProductItems={setProductItems}
+            productItems={productItems}
           ></ProductItem>
         );
       })}

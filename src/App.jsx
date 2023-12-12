@@ -42,7 +42,7 @@ function App() {
         setProductItems={setProductItems}
         productItems={productItems}
       />
-      <Products productItems={productItems} />
+      <Products productItems={productItems} setProductItems={setProductItems} />
     </div>
   );
 }

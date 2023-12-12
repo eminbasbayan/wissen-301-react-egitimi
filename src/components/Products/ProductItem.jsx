@@ -1,10 +1,15 @@
-import Counter from "../Counter";
 import "./ProductItem.css";
 
 function ProductItem(props) {
-  const { imgUrl, productTitle, productPrice } = props.item;
+  const { imgUrl, productTitle, productPrice, id } = props.item;
+  const { productItems, setProductItems } = props;
 
-  const { productsCounter, setProductsCounter } = props;
+  function handleDeleteItem() {
+    const filteredProducts = productItems.filter((product) => {
+      return product.id !== id;
+    });
+    setProductItems(filteredProducts)
+  }
 
   return (
     <div className="product-item">
@@ -12,12 +17,10 @@ function ProductItem(props) {
       <div className="product-info">
         <h3>{productTitle}</h3>
         <strong>{productPrice}</strong>
-        <Counter
-          productsCounter={productsCounter}
-          setProductsCounter={setProductsCounter}
-          product
-        />
       </div>
+      <button className="btn btn-danger" onClick={handleDeleteItem}>
+        Ürünü Sil
+      </button>
     </div>
   );
 }
