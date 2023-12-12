@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./AddNewProduct.css";
 
-function AddNewProduct() {
+function AddNewProduct({ setProductItems, productItems }) {
   const [formProductData, setFormProductData] = useState({
     productName: "",
     productPrice: "",
@@ -17,10 +17,20 @@ function AddNewProduct() {
     });
   }
 
-  console.log(formProductData);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const productData = {
+      id: productItems.length + 1,
+      imgUrl: formProductData.productImage,
+      productTitle: formProductData.productName,
+      productPrice: formProductData.productPrice,
+    };
+
+    setProductItems([...productItems, productData]);
+  }
 
   return (
-    <form className="product-form">
+    <form className="product-form" onSubmit={handleSubmit}>
       <div className="form-item">
         <label htmlFor="name">Product Name</label>
         <input
