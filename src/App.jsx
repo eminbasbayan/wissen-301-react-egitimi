@@ -15,7 +15,6 @@ function App() {
     <div className="app-component">
       <AddNewProduct />
       <Products />
-      <Counter />
     </div>
   );
 }

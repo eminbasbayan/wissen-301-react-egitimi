@@ -11,7 +11,6 @@ function Counter({ productsCounter, setProductsCounter, product }) {
     setCounter(counter + 1);
   }
 
-  console.log(productsCounter);
 
   function azalt() {
     if (product) {
