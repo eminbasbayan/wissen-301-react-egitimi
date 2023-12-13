@@ -71,7 +71,14 @@ function AddNewProduct({ setProductItems, productItems }) {
         />
       </div>
       <button>Add New Product</button>
-      {isShowModal && <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal} />}
+      {isShowModal && (
+        <Modal
+          isShowModal={isShowModal}
+          setIsShowModal={setIsShowModal}
+          title="Boş Geçilemez!"
+          desc="Inputlar Boş Geçilemez!"
+        />
+      )}
     </form>
   );
 }

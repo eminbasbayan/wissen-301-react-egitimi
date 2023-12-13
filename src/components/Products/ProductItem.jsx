@@ -1,14 +1,17 @@
+import { useState } from "react";
+import Modal from "../UI/Modal";
 import "./ProductItem.css";
 
 function ProductItem(props) {
   const { imgUrl, productTitle, productPrice, id } = props.item;
-  const { productItems, setProductItems } = props;
+  const { productItems, setProductItems, setIsShowModal } = props;
 
   function handleDeleteItem() {
     const filteredProducts = productItems.filter((product) => {
       return product.id !== id;
     });
-    setProductItems(filteredProducts)
+    setProductItems(filteredProducts);
+    setIsShowModal(true);
   }
 
   return (
