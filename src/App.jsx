@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Counter from "./components/Counter";
 import Products from "./components/Products/Products";
 import AddNewProduct from "./components/Form/AddNewProduct";
@@ -37,13 +37,13 @@ function App() {
     setFirstname("Mehmet");
   }
   return (
-    <div className="app-component">
+    <React.Fragment>
       <AddNewProduct
         setProductItems={setProductItems}
         productItems={productItems}
       />
       <Products productItems={productItems} setProductItems={setProductItems} />
-    </div>
+    </React.Fragment>
   );
 }
 

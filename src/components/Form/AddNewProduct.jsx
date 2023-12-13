@@ -2,13 +2,16 @@ import { useState } from "react";
 import "./AddNewProduct.css";
 import Modal from "../UI/Modal";
 
+const initialValues = {
+  productName: "",
+  productPrice: "",
+  productImage: "",
+};
+
 function AddNewProduct({ setProductItems, productItems }) {
-  const [formProductData, setFormProductData] = useState({
-    productName: "",
-    productPrice: "",
-    productImage: "",
-  });
+  const [formProductData, setFormProductData] = useState(initialValues);
   const [isShowModal, setIsShowModal] = useState(false);
+  const { productName, productPrice, productImage } = formProductData;
 
   function handleProductChange(event) {
     const inputValue = event.target.value;
@@ -21,7 +24,6 @@ function AddNewProduct({ setProductItems, productItems }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const { productImage, productName, productPrice } = formProductData;
 
     const productData = {
       id: productItems.length + 1,
@@ -39,6 +41,7 @@ function AddNewProduct({ setProductItems, productItems }) {
       return;
     }
     setProductItems([...productItems, productData]);
+    setFormProductData(initialValues);
   }
 
   return (
@@ -50,6 +53,7 @@ function AddNewProduct({ setProductItems, productItems }) {
           id="name"
           onChange={handleProductChange}
           name="productName"
+          value={productName}
         />
       </div>
       <div className="form-item">
@@ -59,6 +63,7 @@ function AddNewProduct({ setProductItems, productItems }) {
           id="price"
           onChange={handleProductChange}
           name="productPrice"
+          value={productPrice}
         />
       </div>
       <div className="form-item">
@@ -68,6 +73,7 @@ function AddNewProduct({ setProductItems, productItems }) {
           id="image"
           onChange={handleProductChange}
           name="productImage"
+          value={productImage}
         />
       </div>
       <button>Add New Product</button>
