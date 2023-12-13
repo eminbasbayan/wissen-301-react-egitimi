@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./AddNewProduct.css";
+import Modal from "../UI/Modal";
 
 function AddNewProduct({ setProductItems, productItems }) {
   const [formProductData, setFormProductData] = useState({
@@ -7,6 +8,7 @@ function AddNewProduct({ setProductItems, productItems }) {
     productPrice: "",
     productImage: "",
   });
+  const [isShowModal, setIsShowModal] = useState(false);
 
   function handleProductChange(event) {
     const inputValue = event.target.value;
@@ -19,13 +21,23 @@ function AddNewProduct({ setProductItems, productItems }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const { productImage, productName, productPrice } = formProductData;
+
     const productData = {
       id: productItems.length + 1,
-      imgUrl: formProductData.productImage,
-      productTitle: formProductData.productName,
-      productPrice: formProductData.productPrice,
+      imgUrl: productImage,
+      productTitle: productName,
+      productPrice: productPrice,
     };
 
+    if (
+      productName.trim().length === 0 ||
+      productPrice.trim().length === 0 ||
+      productImage.trim().length === 0
+    ) {
+      setIsShowModal(true);
+      return;
+    }
     setProductItems([...productItems, productData]);
   }
 
@@ -59,6 +71,7 @@ function AddNewProduct({ setProductItems, productItems }) {
         />
       </div>
       <button>Add New Product</button>
+      {isShowModal && <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal} />}
     </form>
   );
 }
