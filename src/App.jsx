@@ -29,7 +29,7 @@ const productsData = [
 function App() {
   const [firstname, setFirstname] = React.useState("Ahmet");
 
-  const [productItems, setProductItems] = useState(productsData);
+  const [productItems, setProductItems] = useState([]);
   // let firstname = "Ahmet";
 
   function handleClick() {

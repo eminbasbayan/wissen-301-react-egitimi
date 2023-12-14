@@ -1,19 +1,5 @@
-.product-item{
-    border: 1px solid #ccc;
-}
+
 
 .product-item img{
-    width: 100%;
     height: 200px;
-    object-fit: cover;
-}
-
-.product-item h3{
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-weight: normal;
-}
-
-.product-item .product-info{
-    padding: 10px;
 }
