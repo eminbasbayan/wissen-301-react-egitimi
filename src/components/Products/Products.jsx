@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
 import "./Products.css";
 import Modal from "../UI/Modal";
 
 function Products({ productItems, setProductItems }) {
-  const [productsCounter, setProductsCounter] = useState(0);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
 
   const fetchProducts = () => {
     setIsShowLoading(true);
-    setProductItems([])
+    setProductItems([]);
     fetch("https://fakestoreapi.com/products")
       .then((res) => {
         return res.json();
@@ -22,6 +21,8 @@ function Products({ productItems, setProductItems }) {
             productTitle: item.title,
             imgUrl: item.image,
             description: item.description,
+            productPrice: item.price,
+            category: item.category
           };
         });
         setProductItems(newProducts);
@@ -29,6 +30,23 @@ function Products({ productItems, setProductItems }) {
       .catch((err) => console.log(err))
       .finally(() => setIsShowLoading(false));
   };
+
+  useEffect(() => {
+    console.log("sayfa ilk yüklendiğinde çalıştı");
+  }, []);
+
+  useEffect(() => {
+    console.log("sayfa ilk yüklendiğinde ve belirli değerlere bağlı çalıştı");
+  }, [isShowModal]);
+
+  useEffect(() => {
+    // Clean-up function
+    return () => {
+      console.log("component unmounting olduğunda");
+    };
+  }, []);
+
+  console.log("render!");
 
   return (
     <div className="products-wrapper">
@@ -53,8 +71,6 @@ function Products({ productItems, setProductItems }) {
             <ProductItem
               item={item}
               key={item.id}
-              productsCounter={productsCounter}
-              setProductsCounter={setProductsCounter}
               setProductItems={setProductItems}
               productItems={productItems}
               setIsShowModal={setIsShowModal}

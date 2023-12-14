@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Modal = (props) => {
   function closeModal() {
     props.setIsShowModal(false);
   }
+
+  useEffect(() => {
+    // const socket = new WebSocket("http://localhost:5173/api/chat");
+
+    // socket.onopen()
+
+    // Clean-up function
+    return () => {
+      console.log("component unmounting olduğunda");
+      // socket.close()
+    };
+  }, []);
+
   return (
     <div className="modal d-block">
       <div className="modal-dialog">
@@ -42,7 +55,7 @@ const Modal = (props) => {
           backgroundColor: "black",
           opacity: "0.3",
           top: "0",
-          zIndex: "-1"
+          zIndex: "-1",
         }}
       ></div>
     </div>
