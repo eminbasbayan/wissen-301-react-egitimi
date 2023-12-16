@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import "./ProductItem.css";
+import { toast } from "react-toastify";
 import { CartContext } from "../../context/CartContext";
 
 function ProductItem(props) {
   const { imgUrl, productTitle, productPrice, id, description, category } =
     props.item;
   const { productItems, setProductItems, setIsShowModal, addToCart } = props;
-  const data = useContext(CartContext);
-
-  console.log(data);
+  const { cart } = useContext(CartContext);
+  const findItem = cart.find((item) => item.id === id);
 
   function handleDeleteItem(e) {
     e.preventDefault();
@@ -30,13 +30,30 @@ function ProductItem(props) {
         <p className="card-text">{description?.substr(0, 40)}...</p>
         <p className="card-text">{productPrice}₺</p>
         <div className="d-flex justify-content-between">
-          <a
+          <button
             href="#"
             className="btn btn-success"
-            onClick={(e) => addToCart(e, props.item)}
+            onClick={(e) => {
+              if (findItem) {
+                return;
+              }
+              addToCart(e, props.item);
+              toast("Ürün Başarıyla Sepete Eklendi!!!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                type: "success"
+              });
+            }}
+            disabled={findItem}
           >
             Sepete Ekle
-          </a>
+          </button>
           <a href="#" className="btn btn-danger" onClick={handleDeleteItem}>
             Ürünü Sil
           </a>

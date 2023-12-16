@@ -3,16 +3,19 @@ import Counter from "./components/Counter";
 import Products from "./components/Products/Products";
 import AddNewProduct from "./components/Form/AddNewProduct";
 import Header from "./components/Layout/Header";
+import { ToastContainer } from "react-toastify";
 import { CartContext } from "./context/CartContext";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-   const data = useContext(CartContext)
+  const data = useContext(CartContext);
   const [productItems, setProductItems] = useState([]);
   // let firstname = "Ahmet";
 
   console.log(data.cart.length);
   return (
     <React.Fragment>
+      <ToastContainer />
       {/* <AddNewProduct
         setProductItems={setProductItems}
         productItems={productItems}
