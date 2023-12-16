@@ -1,11 +1,15 @@
 import { useContext } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { CartContext } from "../../context/CartContext";
+import { ThemeContext } from "../../context/ThemeContext";
+import { IoPartlySunnyOutline } from "react-icons/io5";
+import { CiDark } from "react-icons/ci";
 
 const Header = () => {
   const { cart } = useContext(CartContext);
+  const { isThemeMode, setIsThemeMode } = useContext(ThemeContext);
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className={`navbar navbar-expand-lg bg-body-tertiary`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           Navbar
@@ -88,6 +92,12 @@ const Header = () => {
               <span className="visually-hidden">unread messages</span>
             </span>
           </span>
+          <button
+            className="btn btn-outline"
+            onClick={() => setIsThemeMode(!isThemeMode)}
+          >
+            {isThemeMode ? <IoPartlySunnyOutline size={24} /> : <CiDark size={24} />}
+          </button>
         </div>
       </div>
     </nav>

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "./ProductItem.css";
 import { toast } from "react-toastify";
 import { CartContext } from "../../context/CartContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 function ProductItem(props) {
   const { imgUrl, productTitle, productPrice, id, description, category } =
@@ -9,6 +10,7 @@ function ProductItem(props) {
   const { productItems, setProductItems, setIsShowModal, addToCart } = props;
   const { cart } = useContext(CartContext);
   const findItem = cart.find((item) => item.id === id);
+  const { isThemeMode } = useContext(ThemeContext);
 
   function handleDeleteItem(e) {
     e.preventDefault();
@@ -22,7 +24,7 @@ function ProductItem(props) {
   }
 
   return (
-    <div className="card product-item">
+    <div className={`card product-item ${isThemeMode && "text-white bg-dark"}`}>
       <img src={imgUrl} className="card-img-top img-fluid" alt="..." />
       <div className="card-body">
         <span className="badge bg-primary mb-1">{category}</span>
@@ -40,14 +42,14 @@ function ProductItem(props) {
               addToCart(e, props.item);
               toast("Ürün Başarıyla Sepete Eklendi!!!", {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
-                type: "success"
+                type: "success",
               });
             }}
             disabled={findItem}

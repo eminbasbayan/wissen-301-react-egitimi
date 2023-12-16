@@ -6,9 +6,11 @@ import Header from "./components/Layout/Header";
 import { ToastContainer } from "react-toastify";
 import { CartContext } from "./context/CartContext";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
   const data = useContext(CartContext);
+  const { isThemeMode } = useContext(ThemeContext);
   const [productItems, setProductItems] = useState([]);
   // let firstname = "Ahmet";
 
@@ -20,13 +22,15 @@ function App() {
         setProductItems={setProductItems}
         productItems={productItems}
       /> */}
-      <div className="container">
-        <Header />
-        <br />
-        <Products
-          productItems={productItems}
-          setProductItems={setProductItems}
-        />
+      <div className={`wrapper ${isThemeMode && "bg-dark"}`}>
+        <div className="container">
+          <Header />
+          <br />
+          <Products
+            productItems={productItems}
+            setProductItems={setProductItems}
+          />
+        </div>
       </div>
     </React.Fragment>
   );
