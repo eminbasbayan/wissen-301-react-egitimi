@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import Counter from "./components/Counter";
 import Products from "./components/Products/Products";
 import AddNewProduct from "./components/Form/AddNewProduct";
+import Header from "./components/Layout/Header";
 const productsData = [
   {
     id: 1,
@@ -38,11 +39,18 @@ function App() {
   }
   return (
     <React.Fragment>
-      <AddNewProduct
+      {/* <AddNewProduct
         setProductItems={setProductItems}
         productItems={productItems}
-      />
-      <Products productItems={productItems} setProductItems={setProductItems} />
+      /> */}
+      <div className="container">
+        <Header />
+        <br />
+        <Products
+          productItems={productItems}
+          setProductItems={setProductItems}
+        />
+      </div>
     </React.Fragment>
   );
 }

@@ -6,6 +6,11 @@ import Modal from "../UI/Modal";
 function Products({ productItems, setProductItems }) {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
+  const [cart, setCart] = useState([]);
+
+  function addToCart(item) {
+    setCart([...cart, item]);
+  }
 
   const fetchProducts = () => {
     setIsShowLoading(true);
@@ -60,9 +65,9 @@ function Products({ productItems, setProductItems }) {
 
   return (
     <div className="products-wrapper">
-      <button className="btn btn-lg btn-primary mb-2" onClick={fetchProducts}>
+      {/* <button className="btn btn-lg btn-primary mb-2" onClick={fetchProducts}>
         Ürünleri Getir
-      </button>
+      </button> */}
       <div className="products">
         {isShowModal && (
           <Modal
@@ -84,6 +89,7 @@ function Products({ productItems, setProductItems }) {
               setProductItems={setProductItems}
               productItems={productItems}
               setIsShowModal={setIsShowModal}
+              addToCart={addToCart}
             />
           );
         })}
