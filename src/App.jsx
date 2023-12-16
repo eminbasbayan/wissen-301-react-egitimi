@@ -1,16 +1,16 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import Counter from "./components/Counter";
 import Products from "./components/Products/Products";
 import AddNewProduct from "./components/Form/AddNewProduct";
 import Header from "./components/Layout/Header";
+import { CartContext } from "./context/CartContext";
 
 function App() {
-  const [cart, setCart] = useState([]);
-
+   const data = useContext(CartContext)
   const [productItems, setProductItems] = useState([]);
   // let firstname = "Ahmet";
 
-  console.log(cart.length);
+  console.log(data.cart.length);
   return (
     <React.Fragment>
       {/* <AddNewProduct
@@ -18,12 +18,11 @@ function App() {
         productItems={productItems}
       /> */}
       <div className="container">
-        <Header cart={cart} />
+        <Header />
         <br />
         <Products
           productItems={productItems}
           setProductItems={setProductItems}
-          setCart={setCart}
         />
       </div>
     </React.Fragment>

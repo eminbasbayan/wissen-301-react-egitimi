@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
 import "./Products.css";
 import Modal from "../UI/Modal";
+import { CartContext } from "../../context/CartContext";
 
-function Products({ productItems, setProductItems, setCart }) {
+function Products({ productItems, setProductItems }) {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
-
+  const { setCart } = useContext(CartContext);
 
   function addToCart(e, item) {
     e.preventDefault();
     // setCart([...cart, item]);
-    setCart((prevState)=> [...prevState, item])
+    setCart((prevState) => [...prevState, item]);
   }
-
 
   const fetchProducts = () => {
     setIsShowLoading(true);

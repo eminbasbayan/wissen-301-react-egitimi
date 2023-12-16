@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { BsCart4 } from "react-icons/bs";
+import { CartContext } from "../../context/CartContext";
 
-const Header = ({ cart }) => {
+const Header = () => {
+  const { cart } = useContext(CartContext);
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -81,7 +84,8 @@ const Header = ({ cart }) => {
           <span type="button" className="position-relative ms-2">
             <BsCart4 size={28} />
             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {cart.length}<span className="visually-hidden">unread messages</span>
+              {cart.length}
+              <span className="visually-hidden">unread messages</span>
             </span>
           </span>
         </div>
