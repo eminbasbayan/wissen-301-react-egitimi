@@ -22,7 +22,7 @@ function Products({ productItems, setProductItems }) {
             imgUrl: item.image,
             description: item.description,
             productPrice: item.price,
-            category: item.category
+            category: item.category,
           };
         });
         setProductItems(newProducts);
@@ -32,21 +32,31 @@ function Products({ productItems, setProductItems }) {
   };
 
   useEffect(() => {
-    console.log("sayfa ilk yüklendiğinde çalıştı");
-  }, []);
-
-  useEffect(() => {
-    console.log("sayfa ilk yüklendiğinde ve belirli değerlere bağlı çalıştı");
-  }, [isShowModal]);
-
-  useEffect(() => {
-    // Clean-up function
-    return () => {
-      console.log("component unmounting olduğunda");
+    setIsShowLoading(true);
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("https://fakestoreapi.com/products");
+        const data = await res.json();
+        const newProducts = data.map((item) => {
+          return {
+            id: item.id,
+            productTitle: item.title,
+            imgUrl: item.image,
+            description: item.description,
+            productPrice: item.price,
+            category: item.category,
+          };
+        });
+        setProductItems(newProducts.reverse());
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsShowLoading(false);
+      }
     };
-  }, []);
 
-  console.log("render!");
+    fetchProducts();
+  }, [setProductItems]);
 
   return (
     <div className="products-wrapper">
@@ -66,7 +76,7 @@ function Products({ productItems, setProductItems }) {
             <span className="sr-only"></span>
           </div>
         )}
-        {productItems.map((item) => {
+        {productItems.reverse().map((item) => {
           return (
             <ProductItem
               item={item}
