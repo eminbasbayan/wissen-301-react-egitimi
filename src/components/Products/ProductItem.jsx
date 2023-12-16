@@ -20,8 +20,6 @@ function ProductItem(props) {
 
 
 
-  console.log(cart);
-
   return (
     <div className="card product-item">
       <img src={imgUrl} className="card-img-top img-fluid" alt="..." />
@@ -31,7 +29,7 @@ function ProductItem(props) {
         <p className="card-text">{description?.substr(0, 40)}...</p>
         <p className="card-text">{productPrice}₺</p>
         <div className="d-flex justify-content-between">
-          <a href="#" className="btn btn-success" onClick={()=> addToCart(props.item)}>
+          <a href="#" className="btn btn-success" onClick={(e)=> addToCart(e, props.item)}>
             Sepete Ekle
           </a>
           <a href="#" className="btn btn-danger" onClick={handleDeleteItem}>

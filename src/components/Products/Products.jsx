@@ -3,14 +3,17 @@ import ProductItem from "./ProductItem";
 import "./Products.css";
 import Modal from "../UI/Modal";
 
-function Products({ productItems, setProductItems }) {
+function Products({ productItems, setProductItems, setCart }) {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
-  const [cart, setCart] = useState([]);
 
-  function addToCart(item) {
-    setCart([...cart, item]);
+
+  function addToCart(e, item) {
+    e.preventDefault();
+    // setCart([...cart, item]);
+    setCart((prevState)=> [...prevState, item])
   }
+
 
   const fetchProducts = () => {
     setIsShowLoading(true);
@@ -81,7 +84,7 @@ function Products({ productItems, setProductItems }) {
             <span className="sr-only"></span>
           </div>
         )}
-        {productItems.reverse().map((item) => {
+        {productItems.map((item) => {
           return (
             <ProductItem
               item={item}
