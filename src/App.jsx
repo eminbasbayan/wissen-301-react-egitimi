@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import Counter from "./components/Counter";
 import Products from "./components/Products/Products";
 import AddNewProduct from "./components/Form/AddNewProduct";
@@ -14,7 +14,8 @@ function App() {
   const [productItems, setProductItems] = useState([]);
   // let firstname = "Ahmet";
 
-  console.log(data.cart.length);
+
+
   return (
     <React.Fragment>
       <ToastContainer />
