@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./ProductItem.css";
+import { CartContext } from "../../context/CartContext";
 
 function ProductItem(props) {
   const { imgUrl, productTitle, productPrice, id, description, category } =
     props.item;
   const { productItems, setProductItems, setIsShowModal, addToCart } = props;
+  const data = useContext(CartContext);
 
+  console.log(data);
 
   function handleDeleteItem(e) {
     e.preventDefault();
@@ -18,8 +21,6 @@ function ProductItem(props) {
     }
   }
 
-
-
   return (
     <div className="card product-item">
       <img src={imgUrl} className="card-img-top img-fluid" alt="..." />
@@ -29,7 +30,11 @@ function ProductItem(props) {
         <p className="card-text">{description?.substr(0, 40)}...</p>
         <p className="card-text">{productPrice}₺</p>
         <div className="d-flex justify-content-between">
-          <a href="#" className="btn btn-success" onClick={(e)=> addToCart(e, props.item)}>
+          <a
+            href="#"
+            className="btn btn-success"
+            onClick={(e) => addToCart(e, props.item)}
+          >
             Sepete Ekle
           </a>
           <a href="#" className="btn btn-danger" onClick={handleDeleteItem}>

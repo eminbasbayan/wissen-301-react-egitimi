@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 //yeni context oluşturma
-const CartContext = createContext();
+export const CartContext = createContext();
 
 const CartProvider = (props) => {
   return (
