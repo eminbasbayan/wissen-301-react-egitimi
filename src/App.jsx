@@ -4,33 +4,24 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "./context/ThemeContext";
 import HomePage from "./pages/HomePage";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductsPage from "./pages/ProductsPage";
+import CartPage from "./pages/CartPage";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <HomePage />,
-//   },
-//   {
-//     path: "/products",
-//     element: <ProductsPage />,
-//   },
-// ]);
-
-const routeDefinitions = createRoutesFromElements(
-  <Route>
-    <Route path="/" element={<HomePage />} />
-    <Route path="/products" element={<ProductsPage />} />
-  </Route>
-);
-
-const router = createBrowserRouter(routeDefinitions);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/products",
+    element: <ProductsPage />,
+  },
+  {
+    path: "/cart",
+    element: <CartPage />,
+  },
+]);
 
 function App() {
   const { isThemeMode } = useContext(ThemeContext);
