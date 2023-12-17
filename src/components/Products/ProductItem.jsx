@@ -8,8 +8,14 @@ import { useNavigate } from "react-router-dom";
 function ProductItem(props) {
   const { imgUrl, productTitle, productPrice, id, description, category } =
     props.item;
-  const { productItems, setProductItems, setIsShowModal, addToCart } = props;
-  const { cart } = useContext(CartContext);
+  const {
+    productItems,
+    setProductItems,
+    setIsShowModal,
+    addToCart,
+    cart: cartProp,
+  } = props;
+  const { cart, setCart } = useContext(CartContext);
   const findItem = cart.find((item) => item.id === id);
   const { isThemeMode } = useContext(ThemeContext);
   const navigate = useNavigate();
@@ -22,6 +28,15 @@ function ProductItem(props) {
       });
       setProductItems(filteredProducts);
       setIsShowModal(true);
+    }
+  }
+
+  function deleteFromCart() {
+    if (window.confirm("Emin Misiniz!!!")) {
+      //previous state
+      setCart((prevCart) => {
+        return prevCart.filter((pItem) => pItem.id !== id);
+      });
     }
   }
 
@@ -42,33 +57,42 @@ function ProductItem(props) {
         <p className="card-text">{description?.substr(0, 40)}...</p>
         <p className="card-text">{productPrice}₺</p>
         <div className="d-flex justify-content-between">
-          <button
-            href="#"
-            className="btn btn-success"
-            onClick={(e) => {
-              if (findItem) {
-                return;
-              }
-              addToCart(e, props.item);
-              toast("Ürün Başarıyla Sepete Eklendi!!!", {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                type: "success",
-              });
-            }}
-            disabled={findItem}
-          >
-            Sepete Ekle
-          </button>
-          <a href="#" className="btn btn-danger" onClick={handleDeleteItem}>
-            Ürünü Sil
-          </a>
+          {!cartProp && (
+            <button
+              href="#"
+              className="btn btn-success"
+              onClick={(e) => {
+                if (findItem) {
+                  return;
+                }
+                addToCart(e, props.item);
+                toast("Ürün Başarıyla Sepete Eklendi!!!", {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                  type: "success",
+                });
+              }}
+              disabled={findItem}
+            >
+              Sepete Ekle
+            </button>
+          )}
+
+          {cartProp ? (
+            <a href="#" className="btn btn-danger" onClick={deleteFromCart}>
+              Sepetten Sil
+            </a>
+          ) : (
+            <a href="#" className="btn btn-danger" onClick={handleDeleteItem}>
+              Ürünü Sil
+            </a>
+          )}
         </div>
       </div>
     </div>
