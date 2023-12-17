@@ -4,10 +4,11 @@ import { CartContext } from "../../context/CartContext";
 import { ThemeContext } from "../../context/ThemeContext";
 import { IoPartlySunnyOutline } from "react-icons/io5";
 import { CiDark } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { cart } = useContext(CartContext);
+  const navigate = useNavigate();
   const { isThemeMode, setIsThemeMode } = useContext(ThemeContext);
   return (
     <nav className={`navbar navbar-expand-lg bg-body-tertiary`}>
@@ -55,7 +56,11 @@ const Header = () => {
               Search
             </button>
           </form>
-          <span type="button" className="position-relative ms-2">
+          <span
+            type="button"
+            className="position-relative ms-2"
+            onClick={() => navigate("/cart")}
+          >
             <BsCart4 size={28} />
             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {cart.length}
