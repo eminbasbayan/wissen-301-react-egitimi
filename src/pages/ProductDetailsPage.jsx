@@ -1,6 +1,9 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const ProductDetailsPage = () => {
+  const params = useParams();
+
   return (
     <div className="mt-5 mb-5">
       <div className="row d-flex justify-content-center">
@@ -18,16 +21,8 @@ const ProductDetailsPage = () => {
                 </div>
                 <div className="thumbnail text-center">
                   {" "}
-                  <img
-                    onclick="change_image(this)"
-                    src="https://i.imgur.com/Rx7uKd0.jpg"
-                    width="70"
-                  />{" "}
-                  <img
-                    onclick="change_image(this)"
-                    src="https://i.imgur.com/Dhebu4F.jpg"
-                    width="70"
-                  />{" "}
+                  <img src="https://i.imgur.com/Rx7uKd0.jpg" width="70" />{" "}
+                  <img src="https://i.imgur.com/Dhebu4F.jpg" width="70" />{" "}
                 </div>
               </div>
             </div>
@@ -66,8 +61,7 @@ const ProductDetailsPage = () => {
                   <h6 className="text-uppercase">Size</h6>{" "}
                   <label className="radio">
                     {" "}
-                    <input type="radio" name="size" value="S" checked />{" "}
-                    <span>S</span>{" "}
+                    <input type="radio" name="size" value="S" /> <span>S</span>{" "}
                   </label>{" "}
                   <label className="radio">
                     {" "}

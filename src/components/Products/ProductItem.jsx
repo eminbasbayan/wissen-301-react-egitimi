@@ -35,7 +35,7 @@ function ProductItem(props) {
           style={{
             cursor: "pointer",
           }}
-          onClick={() => navigate("/product-details")}
+          onClick={() => navigate(`/product/${id}`)}
         >
           {productTitle.substr(0, 16)}...
         </h5>
