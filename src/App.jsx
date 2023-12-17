@@ -1,41 +1,34 @@
-import React, { useContext } from "react";
-import Header from "./components/Layout/Header";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { ThemeContext } from "./context/ThemeContext";
-import HomePage from "./pages/HomePage";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import CartPage from "./pages/CartPage";
+import RootLayout from "./pages/Root";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/products",
-    element: <ProductsPage />,
-  },
-  {
-    path: "/cart",
-    element: <CartPage />,
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/products",
+        element: <ProductsPage />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+    ],
   },
 ]);
 
 function App() {
-  const { isThemeMode } = useContext(ThemeContext);
-
-  return (
-    <React.Fragment>
-      <ToastContainer />
-      <div className={`wrapper ${isThemeMode && "bg-dark"}`}>
-        <div className="container">
-          <RouterProvider router={router} />
-        </div>
-      </div>
-    </React.Fragment>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
