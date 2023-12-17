@@ -4,11 +4,13 @@ import { ToastContainer } from "react-toastify";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import { ThemeContext } from "../context/ThemeContext";
+import ScrollToTop from "../components/ScrollToTop";
 
 const RootLayout = () => {
   const { isThemeMode } = useContext(ThemeContext);
   return (
     <React.Fragment>
+      <ScrollToTop />
       <ToastContainer />
       <div className={`wrapper ${isThemeMode && "bg-dark"}`}>
         <div className="container">

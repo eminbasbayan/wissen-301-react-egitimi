@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProductDetailsPage = () => {
-  const params = useParams();
+  const [product, setProduct] = useState({});
+  const { productId } = useParams();
+
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        const res = await fetch(
+          `https://fakestoreapi.com/products/${productId}`
+        );
+        const data = await res.json();
+        setProduct(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchProduct();
+  }, [productId]);
+
+  console.log(product);
 
   return (
     <div className="mt-5 mb-5">
@@ -13,16 +32,7 @@ const ProductDetailsPage = () => {
               <div className="images p-3">
                 <div className="text-center p-4">
                   {" "}
-                  <img
-                    id="main-image"
-                    src="https://i.imgur.com/Dhebu4F.jpg"
-                    width="250"
-                  />{" "}
-                </div>
-                <div className="thumbnail text-center">
-                  {" "}
-                  <img src="https://i.imgur.com/Rx7uKd0.jpg" width="70" />{" "}
-                  <img src="https://i.imgur.com/Dhebu4F.jpg" width="70" />{" "}
+                  <img id="main-image" src={product.image} width="250" />{" "}
                 </div>
               </div>
             </div>
@@ -39,9 +49,9 @@ const ProductDetailsPage = () => {
                 <div className="mt-4 mb-3">
                   {" "}
                   <span className="text-uppercase text-muted brand">
-                    Orianz
+                    {product.category}
                   </span>
-                  <h5 className="text-uppercase">Men's slim fit t-shirt</h5>
+                  <h5 className="text-uppercase">{product.title}</h5>
                   <div className="price d-flex flex-row align-items-center">
                     {" "}
                     <span className="act-price">$20</span>
@@ -52,11 +62,7 @@ const ProductDetailsPage = () => {
                     </div>
                   </div>
                 </div>
-                <p className="about">
-                  Shop from a wide range of t-shirt from orianz. Pefect for your
-                  everyday use, you could pair it with a stylish pair of jeans
-                  or trousers complete the look.
-                </p>
+                <p className="about">{product.description}</p>
                 <div className="sizes mt-5">
                   <h6 className="text-uppercase">Size</h6>{" "}
                   <label className="radio">
