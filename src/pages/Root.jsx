@@ -13,7 +13,9 @@ const RootLayout = () => {
       <div className={`wrapper ${isThemeMode && "bg-dark"}`}>
         <div className="container">
           <Header />
-          <Outlet />
+          <div className="vh-100">
+            <Outlet />
+          </div>
           <Footer />
         </div>
       </div>
