@@ -9,7 +9,7 @@ const CartItems = () => {
     <div className="products">
       {cart.length > 0 ? (
         cart.map((cartItem) => {
-          return <ProductItem item={cartItem} cart />;
+          return <ProductItem item={cartItem} key={cartItem.id} cart />;
         })
       ) : (
         <h3>Sepette hiç ürün yok!!!</h3>
