@@ -1,16 +1,17 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Counter({ productsCounter, setProductsCounter, product }) {
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
+  const counter = useSelector((state) => state.counter);
 
   function arttir() {
     if (product) {
       setProductsCounter(productsCounter + 1);
       return;
     }
-    setCounter(counter + 1);
+    // setCounter(counter + 1);
   }
-
 
   function azalt() {
     if (product) {
@@ -21,7 +22,7 @@ function Counter({ productsCounter, setProductsCounter, product }) {
         window.alert("Counter 0'ın altında olamaz!");
         return;
       }
-      setCounter(counter - 1);
+      // setCounter(counter - 1);
     }
   }
   return (
