@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from "../store";
 
 function Counter({ productsCounter, setProductsCounter, product }) {
   // const [counter, setCounter] = useState(0);
@@ -14,6 +15,8 @@ function Counter({ productsCounter, setProductsCounter, product }) {
     // setCounter(counter + 1);
     // dispatch({ type: "increment" });
     dispatch({ type: "increase", amount: 5 });
+    dispatch(counterActions.increment());
+    dispatch(counterActions.increase({ amount: 5 }));
   }
 
   function azalt() {
@@ -27,6 +30,7 @@ function Counter({ productsCounter, setProductsCounter, product }) {
       }
       // setCounter(counter - 1);
       dispatch({ type: "decrement" });
+      dispatch(counterActions.decrement());
     }
   }
   return (
