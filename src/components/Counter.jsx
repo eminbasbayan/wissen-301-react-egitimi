@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function Counter({ productsCounter, setProductsCounter, product }) {
   // const [counter, setCounter] = useState(0);
   const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
   function arttir() {
     if (product) {
@@ -11,6 +12,8 @@ function Counter({ productsCounter, setProductsCounter, product }) {
       return;
     }
     // setCounter(counter + 1);
+    // dispatch({ type: "increment" });
+    dispatch({ type: "increase", amount: 5 });
   }
 
   function azalt() {
@@ -23,6 +26,7 @@ function Counter({ productsCounter, setProductsCounter, product }) {
         return;
       }
       // setCounter(counter - 1);
+      dispatch({ type: "decrement" });
     }
   }
   return (
