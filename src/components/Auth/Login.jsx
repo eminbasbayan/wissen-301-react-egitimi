@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../../store";
+import { authActions } from "../../store/auth";
 import { toast } from "react-toastify";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";

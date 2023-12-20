@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { counterActions } from "../store";
+import { counterActions } from "../store/counter";
 
 function Counter({ productsCounter, setProductsCounter, product }) {
   // const [counter, setCounter] = useState(0);
