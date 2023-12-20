@@ -3,13 +3,22 @@ import { BsCart4 } from "react-icons/bs";
 import { CartContext } from "../../context/CartContext";
 import { ThemeContext } from "../../context/ThemeContext";
 import { IoPartlySunnyOutline } from "react-icons/io5";
+import { IoMdExit } from "react-icons/io";
 import { CiDark } from "react-icons/ci";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { cart } = useContext(CartContext);
   const navigate = useNavigate();
+  const { cart } = useContext(CartContext);
   const { isThemeMode, setIsThemeMode } = useContext(ThemeContext);
+
+  const handleLogout = () => {
+    if (window.confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+      localStorage.removeItem("auth");
+      navigate("/login");
+    }
+  };
+
   return (
     <nav className={`navbar navbar-expand-lg bg-body-tertiary`}>
       <div className="container-fluid">
@@ -93,6 +102,7 @@ const Header = () => {
               <CiDark size={24} />
             )}
           </button>
+          <IoMdExit size={24} onClick={handleLogout} />
         </div>
       </div>
     </nav>
