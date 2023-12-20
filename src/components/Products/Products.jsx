@@ -7,12 +7,17 @@ import { CartContext } from "../../context/CartContext";
 function Products({ productItems, setProductItems }) {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
-  const { setCart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   function addToCart(e, item) {
     e.preventDefault();
-    // setCart([...cart, item]);
-    setCart((prevState) => [...prevState, item]);
+    const findItem = cart.find((cItem) => cItem.id === item.id);
+    if (findItem) {
+      //ödev
+    } else {
+      // setCart([...cart, item]);
+      setCart((prevState) => [...prevState, item]);
+    }
   }
 
   const fetchProducts = () => {

@@ -6,8 +6,15 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
 function ProductItem(props) {
-  const { imgUrl, productTitle, productPrice, id, description, category } =
-    props.item;
+  const {
+    imgUrl,
+    productTitle,
+    productPrice,
+    id,
+    description,
+    category,
+    quantity,
+  } = props.item;
   const {
     productItems,
     setProductItems,
@@ -19,6 +26,29 @@ function ProductItem(props) {
   const findItem = cart.find((item) => item.id === id);
   const { isThemeMode } = useContext(ThemeContext);
   const navigate = useNavigate();
+
+  function addCartItem(e) {
+    // if (findItem) {
+    //   return;
+    // }
+    const newItem = {
+      ...props.item,
+      quantity: 1,
+    };
+
+    addToCart(e, newItem);
+    toast("Ürün Başarıyla Sepete Eklendi!!!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      type: "success",
+    });
+  }
 
   function handleDeleteItem(e) {
     e.preventDefault();
@@ -58,36 +88,22 @@ function ProductItem(props) {
         <p className="card-text">{productPrice}₺</p>
         <div className="d-flex justify-content-between">
           {!cartProp && (
-            <button
-              href="#"
-              className="btn btn-success"
-              onClick={(e) => {
-                if (findItem) {
-                  return;
-                }
-                addToCart(e, props.item);
-                toast("Ürün Başarıyla Sepete Eklendi!!!", {
-                  position: "top-right",
-                  autoClose: 2000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "dark",
-                  type: "success",
-                });
-              }}
-              disabled={findItem}
-            >
+            <button href="#" className="btn btn-success" onClick={addCartItem}>
               Sepete Ekle
             </button>
           )}
 
           {cartProp ? (
-            <a href="#" className="btn btn-danger" onClick={deleteFromCart}>
-              Sepetten Sil
-            </a>
+            <div className="d-flex justify-content-between w-100 align-items-center">
+              <a href="#" className="btn btn-danger" onClick={deleteFromCart}>
+                Sepetten Sil
+              </a>
+              <div className="d-flex">
+                <button className="btn btn-info">+</button>
+                <span>{quantity}</span>
+                <button className="btn btn-info">-</button>
+              </div>
+            </div>
           ) : (
             <a href="#" className="btn btn-danger" onClick={handleDeleteItem}>
               Ürünü Sil
