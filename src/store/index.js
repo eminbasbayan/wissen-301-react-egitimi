@@ -3,6 +3,7 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const counterInitialState = {
   counter: 0,
+  showCounter: false,
 };
 
 const counterSlice = createSlice({
@@ -17,6 +18,9 @@ const counterSlice = createSlice({
     },
     decrement(state) {
       state.counter--;
+    },
+    toggleCounter(state) {
+      state.showCounter = !state.showCounter;
     },
   },
 });

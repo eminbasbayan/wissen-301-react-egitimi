@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { counterActions } from "../store";
 
 function Counter({ productsCounter, setProductsCounter, product }) {
   // const [counter, setCounter] = useState(0);
   const counter = useSelector((state) => state.counter);
+  const showCounter = useSelector((state) => state.showCounter);
   const dispatch = useDispatch();
 
   function arttir() {
@@ -35,9 +36,19 @@ function Counter({ productsCounter, setProductsCounter, product }) {
   }
   return (
     <div className="counter d-flex gap-2">
-      <button onClick={arttir}>Arttır</button>
-      <span>{product ? productsCounter : counter}</span>
-      <button onClick={azalt}>Azalt</button>
+      <button
+        className="btn btn-warning"
+        onClick={() => dispatch(counterActions.toggleCounter())}
+      >
+        Toggle Counter
+      </button>
+      {showCounter && (
+        <Fragment>
+          <button onClick={arttir}>Arttır</button>
+          <span>{product ? productsCounter : counter}</span>
+          <button onClick={azalt}>Azalt</button>
+        </Fragment>
+      )}
     </div>
   );
 }
