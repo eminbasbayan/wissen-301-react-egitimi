@@ -4,9 +4,11 @@ import { counterActions } from "../store";
 
 function Counter({ productsCounter, setProductsCounter, product }) {
   // const [counter, setCounter] = useState(0);
-  const counter = useSelector((state) => state.counter);
-  const showCounter = useSelector((state) => state.showCounter);
+  const { counter } = useSelector((state) => state.counter);
+  const { showCounter } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
+
+  console.log(counter);
 
   function arttir() {
     if (product) {

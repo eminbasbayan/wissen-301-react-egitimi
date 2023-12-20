@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
@@ -8,6 +8,13 @@ import ScrollToTop from "../components/ScrollToTop";
 
 const RootLayout = () => {
   const { isThemeMode } = useContext(ThemeContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.getItem("auth") && JSON.parse(localStorage.getItem("auth"))
+      ? ""
+      : navigate("/login");
+  }, [navigate]);
   return (
     <React.Fragment>
       <ScrollToTop />

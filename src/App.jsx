@@ -7,6 +7,7 @@ import RootLayout from "./pages/Root";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorPage from "./pages/ErrorPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+
       {
         path: "/products",
         element: <ProductsPage />,
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
         element: <ErrorPage />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 ]);
 
