@@ -6,7 +6,7 @@ const CartPage = () => {
   const { cart } = useContext(CartContext);
 
   const totalPrice = cart.reduce((previousValue, currentValue) => {
-    return previousValue + currentValue.productPrice;
+    return previousValue + currentValue.productPrice * currentValue.quantity;
   }, 0);
 
   return (

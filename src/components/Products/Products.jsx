@@ -14,6 +14,14 @@ function Products({ productItems, setProductItems }) {
     const findItem = cart.find((cItem) => cItem.id === item.id);
     if (findItem) {
       //ödev
+      const newItem = cart.map((cItem) => {
+        if (cItem.id === item.id) {
+          return { ...cItem, quantity: cItem.quantity + 1 };
+        } else {
+          return cItem;
+        }
+      });
+      setCart(newItem);
     } else {
       // setCart([...cart, item]);
       setCart((prevState) => [...prevState, item]);
